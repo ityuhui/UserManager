@@ -1,12 +1,21 @@
 package com.yuhuixa.usermanager;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity(name = "um_user")
+@Table(
+    name = "um_user",
+    uniqueConstraints = {
+        @UniqueConstraint(name="user_email_unique", columnNames = "email")
+    }
+)
 public class User {
 
     @Id
@@ -20,11 +29,20 @@ public class User {
         generator = "um_user_sequence"
     )
     private Long id;
+    
+    @Column(
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
     private String name;
+
+    @Column(
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
     private String email;
     
-    public User(Long id, String name, String email) {
-        this.id = id;
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
     }
