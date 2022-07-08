@@ -1,4 +1,4 @@
-package com.yuhuixa.usermanager;
+package com.yuhuixa.usermanager.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,6 +42,9 @@ public class User {
     )
     private String email;
     
+    public User() {
+    }
+
     public User(String name, String email) {
         this.name = name;
         this.email = email;
